@@ -19,12 +19,12 @@ public class HomePage {
         this.driver = driver;
     }
 
-    // method
+    // method click
     private void clickButton(By locator) {
         driver.findElement(locator).click();
     }
 
-    // Публічні методи для кліків
+    // element click
     public void clickFields() {
         clickButton(fieldsButton);
     }
