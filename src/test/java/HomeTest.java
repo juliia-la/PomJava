@@ -1,44 +1,40 @@
 package com.udm;
 
+import io.github.bonigarcia.wdm.WebDriverManager; // Додали імпорт менеджера
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.BeforeMethod; // Анотація TestNG
-import org.testng.annotations.AfterMethod;  // Анотація TestNG
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
-public class HomTest {
+public class HomeTest {
     private WebDriver driver;
     private HomePage homePage;
 
-    // Виконується перед КОЖНИМ тестовим методом
     @BeforeMethod
     public void setUp() {
+        WebDriverManager.chromedriver().setup();
+
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-
-        // Замініть на реальну URL-адресу вашого сайту
-        driver.get("https://example-your-website.com");
-
-        // Створюємо об'єкт нашої сторінки
+        driver.get("https://skillklan.com.ua");
         homePage = new HomePage(driver);
+
+
     }
 
-    // Сам тест для перевірки навігації
     @Test
     public void testNavigation() {
-        homePage.clickFields();
-        homePage.clickPrices();
-        homePage.clickVideoCourses();
-        homePage.clickBlog();
-        homePage.clickTeam();
-        homePage.clickFaq();
+        homePage.clickFields();       // 01 Напрямки
+        homePage.clickPrices();       // 02 Вартість
+        homePage.clickBlog();         // 04 Блог
+        homePage.clickFaq();          // 07 FAQ (Питання)
     }
 
-    // Виконується після КОЖНОГО тестового методу
     @AfterMethod
     public void tearDown() {
         if (driver != null) {
-            driver.quit(); // Закриваємо браузер
+            driver.quit();
         }
     }
-}} // <- ДОДАНО: Закриває
+}
